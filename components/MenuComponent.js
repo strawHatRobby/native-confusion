@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { DISHES } from '../shared.dishes';
 
 
 
-export default function Menu(props){
-  const renderMenuItem = ({item, index}) => {
+export default class Menu extends Component{
+  constructor(props){
+  super(props);
+  this.state = {
+    dishes: DISHES,
+   }
+  }
+  renderMenuItem = ({item, index}) => {
     console.log(item);
     return(
         <ListItem
@@ -19,7 +26,7 @@ export default function Menu(props){
 
     );
   };
-
+  render(){
   return(
     <FlatList
       data={props.dishes}
@@ -27,4 +34,5 @@ export default function Menu(props){
       keyExtractor={item => item.id.toString()}
     />
   )
+  }
 }
